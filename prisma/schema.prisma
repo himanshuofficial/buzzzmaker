@@ -14,7 +14,19 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Test {
-  id   Int    @unique @default(autoincrement())
-  name String @default("JHimanshu")
+model Post {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  createdDate DateTime  @default(now())
+  updatedDate DateTime  @updatedAt
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  posts     Post[]
+  createdAt DateTime @default(now())
 }
