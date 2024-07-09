@@ -15,10 +15,13 @@ export const fetchCategories = async () => {
 };
 
 export const fetchPosts = async () => {
+
+  // TODO: pagination is pending
   let posts;
   try {
     posts = await db.post.findMany({
       select: {
+        id: true,
         title: true,
         description: true,
         category: {
@@ -30,6 +33,40 @@ export const fetchPosts = async () => {
       },
     });
     return posts;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const fetchPostById = async (postId: number) => {
+  // TODO: Pagination is pending
+  try {
+    return await db.post.findUnique({
+      where: {
+        id: postId,
+      },
+      include: {
+        category: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const fetchPostByCategoryId = async (categoryId: number) => {
+  try {
+    return await db.post.findMany({
+      where: {
+        categoryId: categoryId,
+      },
+    });
   } catch (error) {
     console.log(error);
     return null;
