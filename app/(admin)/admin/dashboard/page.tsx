@@ -1,50 +1,28 @@
-'use client'
-
-export enum SECTIONS {
-    POSTS,
-    CATEGORIES,
-    COMMENTS
-}
-
-import { useState } from "react";
-import SideNavBar, { SideNavBarProps } from "./components/side-nav";
+import SideNavBar from "./_components/side-nav";
 import PostList from "../post-list/page";
-import CategoryList from "../category-list/page";
+import { CategoryList } from "./_components/caetgory-list";
 
-export default function AdminDashboard() {
-    const [currentSection, setCurrentSection] = useState(SECTIONS.CATEGORIES)
-
-    function changeSection(section: SECTIONS) {
-        console.log('Setting', section)
-        setCurrentSection(section)
+export default function AdminDashboard({ searchParams }: any) {
+  const { currentPage } = searchParams;
+  function renderCurrentSection() {
+    switch (currentPage) {
+      case "comment":
+        // TODO: add comment page here
+        return <PostList />;
+      case "category":
+        return <CategoryList />;
+      default:
+        return <PostList />;
     }
+  }
 
-    const sideNavBarProps: SideNavBarProps = {
-        onSectionClick: changeSection
-    } 
-
-    function renderCurrentSection(section: SECTIONS) {
-
-        switch (section) {
-            case SECTIONS.POSTS:
-               return <PostList />;
-            case SECTIONS.CATEGORIES:
-                return <CategoryList />;
-            case SECTIONS.COMMENTS:
-                return <CategoryList />;
-        }
-        return ''
-
-    }
-    
-    return ( 
+  return (
     <>
-    <div className="flex">
-        <SideNavBar {...sideNavBarProps}></SideNavBar>
-    
-       <div>
-        { renderCurrentSection(currentSection) }
-       </div>
-    </div>
-    </>);
+      <div className="flex w-screen">
+        <SideNavBar></SideNavBar>
+
+        <div className="w-full">{renderCurrentSection()}</div>
+      </div>
+    </>
+  );
 }
