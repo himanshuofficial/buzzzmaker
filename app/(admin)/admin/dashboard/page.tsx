@@ -7,7 +7,7 @@ export enum SECTIONS {
 }
 
 import { useState } from "react";
-import SideNavBar, { SideNavBarProps } from "./components/side-nav";
+import SideNavBar, { SideNavBarProps } from "./_components/side-nav";
 import PostList from "../post-list/page";
 import CategoryList from "../category-list/page";
 
@@ -39,10 +39,10 @@ export default function AdminDashboard() {
     
     return ( 
     <>
-    <div className="flex">
+    <div className="flex">s
         <SideNavBar {...sideNavBarProps}></SideNavBar>
     
-       <div>
+       <div className="w-full">
         { renderCurrentSection(currentSection) }
        </div>
     </div>
