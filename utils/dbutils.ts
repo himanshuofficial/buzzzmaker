@@ -35,3 +35,16 @@ export const fetchPosts = async () => {
     return null;
   }
 };
+
+export const deletePost = async (id: number) => {
+  try {
+    const delete_post = await db.post.delete({
+      where: {
+        id: id,
+      },
+    })
+  } catch (error) {
+    console.error('some error occurred')
+  }
+}
+
