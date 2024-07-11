@@ -1,6 +1,6 @@
 import { CreateCategory } from "@/actions/category/create-category";
 import { deleteCategory } from "@/actions/category/delete-category";
-import { Button } from "@/components/ui/test-delete";
+import { FormSubmit } from "@/components/ui/FormSubmit";
 import { fetchCategories } from "@/utils/dbutils";
 import { CategoryBoard } from "./_components/category-board";
 
@@ -17,8 +17,7 @@ const Category = async () => {
         <form action={CreateCategory}>
           <label htmlFor="id">Category Name</label>
           <input type="text" id="name" name="name"/>
-          <Button fallbackMessage="Creating" buttonText="Create"/>
-          {/* <button type="submit">Submit</button> */}
+          <FormSubmit fallbackMessage="Creating" buttonText="Create" variant="default"/>
         </form>
       </div>
       <div>
