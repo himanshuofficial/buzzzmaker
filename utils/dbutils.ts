@@ -19,6 +19,7 @@ export const fetchPosts = async () => {
   try {
     posts = await db.post.findMany({
       select: {
+        id: true,
         title: true,
         description: true,
         category: {
@@ -35,16 +36,3 @@ export const fetchPosts = async () => {
     return null;
   }
 };
-
-export const deletePost = async (id: number) => {
-  try {
-    const delete_post = await db.post.delete({
-      where: {
-        id: id,
-      },
-    })
-  } catch (error) {
-    console.error('some error occurred')
-  }
-}
-
