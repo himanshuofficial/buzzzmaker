@@ -15,10 +15,13 @@ export const fetchCategories = async () => {
 };
 
 export const fetchPosts = async () => {
+
+  // TODO: pagination is pending
   let posts;
   try {
     posts = await db.post.findMany({
       select: {
+        id: true,
         id: true,
         title: true,
         description: true,
