@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header id="site-header" className="top-0">
-          <nav className="menu-primary-navigation-container px-3 mt-4 flex fixed w-full top-0 justify-center content-center bg-white">
+          <nav className="menu-primary-navigation-container px-3 py-4 flex fixed w-full top-0 justify-center content-center bg-white z-40">
             <ul className="primary-nav flex items-center justify-center" id="primary-nav">
               <li className="toggle toggle-menu alignleft">
                 <span  className="px-5 py-3 font-bold text-linktext hover:text-linkhovertext cursor-pointer">
