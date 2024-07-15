@@ -52,10 +52,6 @@ export const columns: ColumnDef<Post>[] = [
     },
   },
   {
-    accessorKey: "description",
-    header: "Description",
-  },
-  {
     accessorKey: "category.name",
     header: "Category",
   },

@@ -36,3 +36,25 @@ export const fetchPosts = async () => {
     return null;
   }
 };
+
+export const fetchPostById = async (id: number) => {
+  try {
+    return await db.post.findUnique({
+      where: {
+        id
+      },
+      include: {
+        category: {
+          select: {
+            id: true,
+            name: true,
+          }
+        }
+      }
+    })
+  }
+  catch(error) {
+    console.log(error);
+    return null
+  }
+}

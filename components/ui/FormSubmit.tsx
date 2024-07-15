@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Save, Trash } from "lucide-react";
 
 interface ButtonProps {
-  buttonText: string;
+  buttonText?: string;
   fallbackMessage: string;
   variant: "default" | "destructive" | "outline";
   className?: string;
@@ -22,7 +22,6 @@ export const FormSubmit = ({
   action,
 }: ButtonProps) => {
   const { pending } = useFormStatus();
-  console.log("pending status", pending);
   if (onPending) {
     console.log("pending", pending);
     onPending(pending);

@@ -1,0 +1,92 @@
+"use client";
+import PostCreate from "@/components/text-editor/novel-editor/editor";
+import { CategoryEdit } from "./category-edit";
+import { TitleEdit } from "./title-edit";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useState } from "react";
+import { CreatePost } from "@/actions/post/create-post";
+import { useFormState, useFormStatus } from "react-dom";
+import { updatePost } from "@/actions/post/update-post";
+
+interface PostProps {
+  postData?: {
+    title: string;
+    category: {
+      id: number;
+      name: string;
+    };
+    description: string;
+  };
+  categories: {
+    id: number;
+    name: string;
+  }[];
+  postId?: number;
+}
+
+const Footer = () => {
+const {pending} = useFormStatus();
+console.log(pending);
+  return <footer className="mt-5 flex gap-2 m-5"></footer>;
+};
+
+export const AddPost = ({ postData, categories, postId }: PostProps) => {
+  const [title, setTitle] = useState(postData?.title ?? "");
+  const [category, setCategory] = useState(postData?.category?.id ?? null);
+  const initialDescription = postData?.description ?? "{}";
+  const [description, setDescription] = useState(
+    JSON.parse(initialDescription)
+  );
+  const [loading, setLoading] = useState(false)
+  const selectedCategory = postData?.category?.id;
+
+  const submitBlogData = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("categoryId", String(category));
+    formData.append("description", JSON.stringify(description));
+    console.log(formData.get("title"), formData.get("categoryId"), formData.get('description'))
+    setLoading(true)
+    if(postId) {
+      const updatePostById = updatePost.bind(null, postId);
+      await updatePostById(formData);
+    }
+    else {
+      await CreatePost(formData);
+    }
+    setLoading(false)
+  }
+
+
+
+  return (
+    <>
+      <form>
+        <TitleEdit
+          onTitleChange={(title) => setTitle(title)}
+          name={postData?.title}
+        />
+        <CategoryEdit
+          onCategoryChange={(data) => setCategory(data)}
+          selectedCategory={selectedCategory}
+          categoryList={categories}
+        />
+        <PostCreate
+          onDescriptionChange={(description: any) =>
+            setDescription(description)
+          }
+          editorContent={description}
+        />
+        <footer className="flex gap-2 m-5">
+          <Button type="submit" onClick={submitBlogData} disabled={loading}>{loading ?' Submitting' : 'Submit'}</Button>
+          <Link href="/admin/dashboard">
+            <Button type="button" disabled={loading}>Cancel</Button>
+          </Link>
+        </footer>
+        <Footer></Footer>
+      </form>
+    </>
+  );
+};

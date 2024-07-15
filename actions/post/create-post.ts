@@ -14,8 +14,6 @@ export type State = {
 };
 
 export const CreatePost = async (formData: FormData) => {
-  console.log(formData);
-
   const validatedData = PostSchema.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
@@ -54,6 +52,5 @@ export const CreatePost = async (formData: FormData) => {
     return null;
   }
 
-  revalidatePath("/login/post")
-  // redirect("/login/post")
+  redirect("/admin/dashboard")
 };

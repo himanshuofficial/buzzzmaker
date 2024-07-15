@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 export const PostSchema = z.object({
     title: z.string(),
-    description: z.string().min(100, {message: "Description must be atleast 100 characters long"}),
+    description: z.string().min(20, {message: "Description must be atleast 100 characters long"}),
     categoryId: z.coerce.number().optional()
 })
 

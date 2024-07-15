@@ -1,9 +1,14 @@
-import Image from "next/image";
 
-export default function Home() {
+import { fetchPostById } from "@/utils/dbutils";
+import { Sample } from "./sample";
+const Page = async () => {
+  const post = await fetchPostById(30);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Buzzmaker
-    </main>
+    <>
+      <Sample post={post} />
+    </>
   );
-}
+};
+
+export default Page;

@@ -19,7 +19,7 @@ export default function AdminDashboard({ searchParams }: any) {
 
   return (
     <>
-      <div className="flex w-screen">
+      <div className="sm:flex w-screen">
         <SideNavBar></SideNavBar>
         <div className="w-full">{renderCurrentPage()}</div>
       </div>
