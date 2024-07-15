@@ -15,6 +15,9 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 
 
+function deletePost(post) {
+  console.log(post)
+}
 
 export type Post = {
   id: string
@@ -71,7 +74,7 @@ export const columns: ColumnDef<Post>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
+      const post = row.original
 
       return (
         <DropdownMenu>
@@ -85,7 +88,7 @@ export const columns: ColumnDef<Post>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem onClick={() =>{console.log(post)}}>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
