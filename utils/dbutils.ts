@@ -22,7 +22,6 @@ export const fetchPosts = async () => {
     posts = await db.post.findMany({
       select: {
         id: true,
-        id: true,
         title: true,
         description: true,
         category: {
@@ -59,5 +58,33 @@ export const fetchPostById = async (id: number) => {
   catch(error) {
     console.log(error);
     return null
+  }
+}
+
+export const fetchPostsByCategoryId = async (categoryId: number) => {
+  try {
+    return await db.post.findMany({
+      where: {
+        categoryId
+      }
+    })
+  } catch(error) {
+    console.log(error)
+    return null;
+  }
+}
+
+export const fetchCommentsByPostId = async (postId: number) => {
+  try {
+    return await db.comment.findMany({
+      where: {
+        postId,
+      },
+      orderBy: {
+        createAt: "desc"
+      }
+    })
+  } catch(error) {
+    return null;
   }
 }
