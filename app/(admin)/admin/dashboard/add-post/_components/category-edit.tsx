@@ -23,11 +23,12 @@ export const CategoryEdit = ({
   selectedCategory,
   onCategoryChange
 }: CategoryProps) => {
-
+  // const sto = String(selectedCategory)
+  // console.log(typeof sto)
+  // console.log(sto)
   const categoryChange = (e: any) => {
     onCategoryChange(e)
   }
-
   return (
     <Card className="m-5">
       <CardHeader className="border-b-2">
@@ -36,9 +37,9 @@ export const CategoryEdit = ({
       </CardHeader>
       <CardContent className="py-8">
         <RadioGroup defaultValue={String(selectedCategory)} onValueChange={categoryChange} className="flex flex-col gap-3">
-          {categoryList.map((category: any) => (
-            <div className="flex items-center space-x-2" key={(category.id)}>
-              <RadioGroupItem value={category.id} id="{category.id}"/>
+          {categoryList.map((category: any) => (    
+            <div className="flex items-center space-x-2" key={category.id}>
+              <RadioGroupItem value={String(category.id)} id="21"/>
               <Label htmlFor={category.id}>{category.name}</Label>
             </div>
           ))}
