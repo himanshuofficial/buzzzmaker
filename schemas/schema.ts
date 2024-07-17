@@ -10,3 +10,10 @@ export const PostSchema = z.object({
     categoryId: z.coerce.number().optional()
 })
 
+export const CommentSchema = z.object({
+    comment: z.string(),
+    email: z.string(),
+    postId: z.coerce.number(),
+    name: z.string(),
+    website: z.string().optional()
+})
