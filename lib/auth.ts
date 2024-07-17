@@ -43,7 +43,7 @@ export async function getSession() {
     const session = cookies().get('session')?.value;
     if(!session) return null;
     // since there is only one user 
-    return true;
+    return await decrypt(session);
 }
 
 export async function updateSession(request: NextRequest) {
