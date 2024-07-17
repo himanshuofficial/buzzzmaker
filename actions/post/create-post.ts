@@ -13,15 +13,12 @@ export type State = {
   };
 };
 
-export const CreatePost = async (prevState: State, formData: FormData) => {
-  console.log(formData);
-
+export const CreatePost = async (formData: FormData) => {
   const validatedData = PostSchema.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
     categoryId: formData.get("categoryId") ?? undefined,
   });
-
   if (!validatedData.success) {
     console.log("Invalid Data as per schema");
     return {
@@ -55,6 +52,5 @@ export const CreatePost = async (prevState: State, formData: FormData) => {
     return null;
   }
 
-  revalidatePath("/login/post")
-  redirect("/login/post")
+  redirect("/admin/dashboard")
 };

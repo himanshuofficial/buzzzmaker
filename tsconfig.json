@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/editor/editor-toolbar.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/editor/editor-toolbar.js", "components/text-editor/extensions/suggetions-items.js"],
   "exclude": ["node_modules"]
 }

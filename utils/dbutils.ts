@@ -15,10 +15,13 @@ export const fetchCategories = async () => {
 };
 
 export const fetchPosts = async () => {
+
+  // TODO: pagination is pending
   let posts;
   try {
     posts = await db.post.findMany({
       select: {
+        id: true,
         title: true,
         description: true,
         category: {
@@ -36,15 +39,52 @@ export const fetchPosts = async () => {
   }
 };
 
-export const deletePost = async (id: number) => {
+export const fetchPostById = async (id: number) => {
   try {
-    const delete_post = await db.post.delete({
+    return await db.post.findUnique({
       where: {
-        id: id,
+        id
       },
+      include: {
+        category: {
+          select: {
+            id: true,
+            name: true,
+          }
+        }
+      }
     })
-  } catch (error) {
-    console.error('some error occurred')
+  }
+  catch(error) {
+    console.log(error);
+    return null
   }
 }
 
+export const fetchPostsByCategoryId = async (categoryId: number) => {
+  try {
+    return await db.post.findMany({
+      where: {
+        categoryId
+      }
+    })
+  } catch(error) {
+    console.log(error)
+    return null;
+  }
+}
+
+export const fetchCommentsByPostId = async (postId: number) => {
+  try {
+    return await db.comment.findMany({
+      where: {
+        postId,
+      },
+      orderBy: {
+        createAt: "desc"
+      }
+    })
+  } catch(error) {
+    return null;
+  }
+}

@@ -1,10 +1,56 @@
+"use client";
+import { Cross } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function SideNavBar() {
-
+  const [hideNav, setHideNav] = useState(true);
   return (
     <>
-      <div className="relative md:flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 hidden">
+      <div
+        className={cn(
+          "sm:hidden h-screen w-full fixed bg-slate-50 flex items-center justify-center z-10 text-center transition-all",
+          { "-left-full": hideNav }
+        )}
+      >
+        <button
+          className="absolute right-8 top-12"
+          onClick={() => setHideNav(true)}
+        >
+          <Cross />
+        </button>
+
+        <ul className="flex flex-col gap-14 text-4xl font-semibold">
+          <Link href="?currentPage=blog" onClick={() => setHideNav(true)}>Blog</Link>
+          <Link href="?currentPage=category" onClick={() => setHideNav(true)}>Category</Link>
+          <Link href="?currentPage=blog" onClick={() => setHideNav(true)}>Comments</Link>
+        </ul>
+      </div>
+      <button
+        data-drawer-target="default-sidebar"
+        data-drawer-toggle="default-sidebar"
+        aria-controls="default-sidebar"
+        type="button"
+        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        onClick={() => setHideNav(false)}
+      >
+        <span className="sr-only">Open sidebar</span>
+        <svg
+          className="w-6 h-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+          ></path>
+        </svg>
+      </button>
+      <div className="relative sm:flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 hidden">
         <div className="mb-2 p-4">
           <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-gray-900">
             Admin Panel
@@ -33,7 +79,8 @@ export default function SideNavBar() {
             </div>
             Blogs
           </Link>
-          <Link href="?currentPage=category"
+          <Link
+            href="?currentPage=category"
             role="button"
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >

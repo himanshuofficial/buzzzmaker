@@ -1,5 +1,5 @@
 import { deleteCategory } from "@/actions/category/delete-category";
-import { Button } from "@/components/ui/test-delete";
+import { FormSubmit } from "@/components/ui/FormSubmit";
 
 interface CategoryProps  {
     id: number;
@@ -11,7 +11,7 @@ export const CategoryBoard = ({id, name}: CategoryProps) => {
     return (
         <form action={deleteCategoryById}>
             <p>{name}</p>
-            <Button fallbackMessage="Deleting" buttonText="Delete"/>
+            <FormSubmit fallbackMessage="Deleting" buttonText="Delete" variant="destructive"/>
         </form>
     )
 }

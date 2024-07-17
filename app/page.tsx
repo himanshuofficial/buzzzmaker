@@ -246,4 +246,4 @@ export default function Home({ searchParams }: any) {
       <FooterComp />
     </main>
   );
-}
+};

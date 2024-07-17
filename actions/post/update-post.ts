@@ -3,7 +3,6 @@
 import { PostSchema } from "@/schemas/schema";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 export type State = {
   errors?: {
@@ -13,8 +12,7 @@ export type State = {
   };
 };
 
-export const CreatePost = async (prevState: State, postId: number, formData: FormData) => {
-  console.log(formData);
+export const updatePost = async (postId: number, formData: FormData) => {
 
   const validatedData = PostSchema.safeParse({
     title: formData.get("title"),
@@ -60,7 +58,5 @@ export const CreatePost = async (prevState: State, postId: number, formData: For
     console.log("Error while updating post: ", error);
     return null;
   }
-
-  revalidatePath("/login/post")
-  redirect("/login/post")
+  redirect("/admin/dashboard")
 };

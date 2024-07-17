@@ -3,29 +3,26 @@ import PostList from "../post-list/page";
 import { CategoryList } from "./_components/caetgory-list";
 
 export default function AdminDashboard({ searchParams }: any) {
-    const { currentPage } = searchParams;
+  const { currentPage } = searchParams;
 
-    console.log(searchParams)
-
-    let comp: any = ''
+  const renderCurrentPage = () => {
     switch (currentPage) {
-        case "blog":
+      case "blog":
         // TODO: add comment page here
-            comp = <PostList />;
-        case "category":
-            comp = <CategoryList />;
-        default:
-            comp = <PostList />;
+        return <PostList />;
+      case "category":
+        return <CategoryList />;
+      default:
+        return <PostList />;
     }
+  };
 
-
-    return (
-        <>
-        <div className="flex w-screen">
-            <SideNavBar></SideNavBar>
-
-            <div className="w-full">{comp}</div>
-        </div>
-        </>
-    );
+  return (
+    <>
+      <div className="sm:flex w-screen">
+        <SideNavBar></SideNavBar>
+        <div className="w-full">{renderCurrentPage()}</div>
+      </div>
+    </>
+  );
 }

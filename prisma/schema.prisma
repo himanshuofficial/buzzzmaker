@@ -22,6 +22,7 @@ model Post {
   updatedDate DateTime  @updatedAt
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  Int?
+  comments Comment[]
 }
 
 model Category {
@@ -29,4 +30,15 @@ model Category {
   name      String
   posts     Post[]
   createdAt DateTime @default(now())
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  comment String
+  name String
+  email String 
+  website String?
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  createAt DateTime @default(now())
+  postId Int
 }
