@@ -1,3 +1,5 @@
+import { FacebookIcon } from "lucide-react"
+import { XIcon, InstagramIcon } from "lucide-react"
 export default function FooterComp() {
     return (
         <>
@@ -485,7 +487,10 @@ export default function FooterComp() {
                     </div>
 
 
-                    <div className="footer-widget-area footer-bottom flex-grid cols-1"><section id="threeforty_social_widget-1" className="widget threeforty_social_widget"><ul className="social-icons text-icon brand"><li className="social-icon twitter"><a href="#" className="twitter" target="_blank"><span><i className="icon-twitter"></i></span>twitter</a></li><li className="social-icon facebook"><a href="#" className="facebook" target="_blank"><span><i className="icon-facebook"></i></span>facebook</a></li><li className="social-icon instagram"><a href="#" className="instagram" target="_blank"><span><i className="icon-instagram"></i></span>instagram</a></li><li className="social-icon vkontakte"><a href="#" className="vkontakte" target="_blank"><span><i className="icon-vkontakte"></i></span>vkontakte</a></li></ul></section>
+                    <div className="footer-widget-area footer-bottom flex-grid cols-1">
+                        <section id="threeforty_social_widget-1" className="widget threeforty_social_widget">
+                            <ul className="social-icons text-icon brand">
+                                <li className="social-icon twitter"><a href="#" className="twitter" target="_blank"><span><i className="icon-twitter"></i></span>twitter</a></li><li className="social-icon facebook"><a href="#" className="facebook" target="_blank"><span><i className="icon-facebook"></i></span>facebook</a></li><li className="social-icon instagram"><a href="#" className="instagram" target="_blank"><span><i className="icon-instagram"></i></span>instagram</a></li><li className="social-icon vkontakte"><a href="#" className="vkontakte" target="_blank"><span><i className="icon-vkontakte"></i></span>vkontakte</a></li></ul></section>
                     </div>
                     <ul className="footer-info">
                         <li className="footer-copyright">
