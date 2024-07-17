@@ -8,15 +8,13 @@ export default async function PostList() {
 
   const data = await fetchPosts();
 
-  console.log(data);
-
   return (
     <div className="container mx-auto py-10">
       <Link href="/admin/dashboard/add-post">
         <Button  className="mb-2" type="button">Add new blog</Button>
       </Link>
 
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data as any} />
     </div>
   );
 }

@@ -23,9 +23,7 @@ export const CategoryEdit = ({
   selectedCategory,
   onCategoryChange
 }: CategoryProps) => {
-  // const sto = String(selectedCategory)
-  // console.log(typeof sto)
-  // console.log(sto)
+
   const categoryChange = (e: any) => {
     onCategoryChange(e)
   }
