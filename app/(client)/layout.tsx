@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 import Image from "next/image";
+import FooterComp from "../_components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -113,7 +114,7 @@ export default function ClientLayout({
         </nav>
       </header>
       <div className="mt-40">{children}</div>
-      <footer>this is the footer</footer>
+      <FooterComp />
     </>
   );
 }

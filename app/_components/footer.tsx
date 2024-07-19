@@ -98,7 +98,7 @@ export default function FooterComp() {
 
     return (
         <>
-            <footer id="colophon" className="site-footer">
+            <footer id="colophon" className="site-footer mt-16 mb-8">
 
                 <div className="container">
 
