@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ArchiveBlogs from "./_components/archive-blogs";
 import CategoryList from "./_components/category-list";
-import FooterComp from "./_components/footer";
 
 export default function Home({ searchParams }: any) {
   return (
@@ -242,8 +241,6 @@ export default function Home({ searchParams }: any) {
           <CategoryList />
         </div>
       </div>
-
-      <FooterComp />
     </main>
   );
 };
