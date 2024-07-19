@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ArchiveBlogs from "./_components/archive-blogs";
 import CategoryList from "./_components/category-list";
-import FooterComp from "./_components/footer";
 
 export default function Home({ searchParams }: any) {
   return (
@@ -11,7 +10,7 @@ export default function Home({ searchParams }: any) {
           <div className="2xl:mx-auto 2xl:container lg:px-20 lg:py-16 md:py-12 md:px-6 py-9 px-4 w-96 sm:w-auto">
             <div role="main" className="flex flex-col items-center justify-center">
               <h1 className="text-4xl font-semibold leading-9 text-center text-gray-800 dark:text-gray-50">This Week Blogs</h1>
-              <p className="text-base leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12">If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough</p>
+              <p className="text-base leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12">If you are looking for random paragraphs, you have come to the right place. When a random word or a random sentence is not quite enough</p>
             </div>
             <div className="lg:flex items-stretch md:mt-12 mt-8">
               <div className="lg:w-1/2">
@@ -125,7 +124,7 @@ export default function Home({ searchParams }: any) {
           <div className="2xl:mx-auto 2xl:container lg:px-20 lg:py-16 md:py-12 md:px-6 py-9 px-4 w-96 sm:w-auto">
             <div role="main" className="flex flex-col items-center justify-center">
               <h1 className="text-4xl font-semibold leading-9 text-center text-gray-800 dark:text-gray-50">This Week Blogs</h1>
-              <p className="text-base leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12">If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough</p>
+              <p className="text-base leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12">If you are looking for random paragraphs, you have come to the right place. When a random word or a random sentence is not quite enough</p>
             </div>
             <div className="lg:flex items-stretch md:mt-12 mt-8">
               <div className="lg:w-1/2">
@@ -242,8 +241,6 @@ export default function Home({ searchParams }: any) {
           <CategoryList />
         </div>
       </div>
-
-      <FooterComp />
     </main>
   );
 };

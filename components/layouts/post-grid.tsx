@@ -46,7 +46,6 @@ export const PostGrid = ({ data, activeTagName }: any) => {
                       </p>
                     </div>
                     <div
-                      href={`/post/${item.id}`}
                       className="block w-max text-cyan-600"
                     >
                       Read more
