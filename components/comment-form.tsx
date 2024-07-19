@@ -29,7 +29,7 @@ export const CommentForm = ({ postId }: any) => {
         ></textarea>
       </div>
       <div className="flex flex-col md:flex-row gap-2">
-        <div className="w-2/4">
+        <div className="md:w-2/4">
           <Label htmlFor="name">Name</Label>
           <Input
             id="name"
@@ -39,7 +39,7 @@ export const CommentForm = ({ postId }: any) => {
             required
           />
         </div>
-        <div className="w-2/4">
+        <div className="md:w-2/4">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"

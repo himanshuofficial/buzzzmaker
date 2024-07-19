@@ -1,10 +1,6 @@
-import { request } from "http";
 import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
-import { describe } from "node:test";
-import { useRouter } from "next/navigation";
 
 const secretKey = "b=w^$^n60tnf5^3%mb&1si=z6f!vh9ofjrrn$3loc+2b+9tq=8"
 const key = new TextEncoder().encode(secretKey)
@@ -48,7 +44,6 @@ export async function getSession() {
 
 export async function updateSession(request: NextRequest) {
     const session = request.cookies.get('session')?.value;
-    console.log("returning")
     if(!session) {
         return;
     }

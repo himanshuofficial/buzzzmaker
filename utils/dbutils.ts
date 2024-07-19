@@ -40,6 +40,7 @@ export const fetchPosts = async () => {
 };
 
 export const fetchPostById = async (id: number) => {
+  console.log("fetch post")
   try {
     return await db.post.findUnique({
       where: {
@@ -51,7 +52,8 @@ export const fetchPostById = async (id: number) => {
             id: true,
             name: true,
           }
-        }
+        },
+        Image: true
       }
     })
   }
@@ -66,6 +68,16 @@ export const fetchPostsByCategoryId = async (categoryId: number) => {
     return await db.post.findMany({
       where: {
         categoryId
+      },
+      select: {
+        title: true,
+        description: true,
+        id: true,
+        category: {
+          select: {
+            name: true,
+          }
+        }
       }
     })
   } catch(error) {
@@ -81,10 +93,38 @@ export const fetchCommentsByPostId = async (postId: number) => {
         postId,
       },
       orderBy: {
+        
         createAt: "desc"
       }
     })
   } catch(error) {
     return null;
+  }
+}
+
+export const fetchPostsWithCategory = async (categoryId: number) => {
+  try {
+    return await db.post.findMany({
+      where: {
+        categoryId,
+      },
+      include: {
+        category: {
+          select: {
+            name: true,
+
+          }
+        },
+        _count: {
+          select: {
+            comments: true
+          }
+        },
+        Image: true
+      }, 
+    })
+  } catch(error) {
+    console.log(error)
+    return null
   }
 }

@@ -1,5 +1,8 @@
 "use server";
 
+import { writeFile } from "fs/promises";
+import path from "path";
+
 import { PostSchema } from "@/schemas/schema";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -18,6 +21,8 @@ export const CreatePost = async (formData: FormData) => {
     title: formData.get("title"),
     description: formData.get("description"),
     categoryId: formData.get("categoryId") ?? undefined,
+    shortDescription: formData.get("shortDescription"),
+    shortDesc: formData.get("shortDesc")
   });
   if (!validatedData.success) {
     console.log("Invalid Data as per schema");
@@ -27,8 +32,9 @@ export const CreatePost = async (formData: FormData) => {
       },
     };
   }
-
-  const { title, description, categoryId } = validatedData.data;
+  console.log(formData)
+  const file: any= formData.get("file");
+  const { title, description, categoryId, shortDescription, shortDesc} = validatedData.data;
   let post;
   try {
     if (categoryId) {
@@ -37,6 +43,8 @@ export const CreatePost = async (formData: FormData) => {
           title,
           description,
           categoryId,
+          shortDescription,
+          shortDesc
         },
       });
     } else {
@@ -44,8 +52,33 @@ export const CreatePost = async (formData: FormData) => {
         data: {
           title,
           description,
+          shortDescription,
+          shortDesc
         },
       });
+    }
+    if(file && file!="undefined") {
+      console.log("isni")
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const filename = Date.now() + file.name.replaceAll(" ", "_");
+      await writeFile(
+        path.join(process.cwd(), "public/uploads/" + filename),
+        buffer
+      );
+      await db.image.create({
+        data: {
+          imageUrl: "/uploads/" + filename,
+          postId: post.id
+        }
+      })
+    }
+    else {
+      await db.image.create({
+        data: {
+          imageUrl: "/uploads/" + "default.jpg",
+          postId: post.id
+        }
+      })
     }
   } catch (error) {
     console.log("Error is: ", error);

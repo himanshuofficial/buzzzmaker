@@ -15,14 +15,17 @@ datasource db {
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String
-  createdDate DateTime  @default(now())
-  updatedDate DateTime  @updatedAt
-  category    Category? @relation(fields: [categoryId], references: [id])
-  categoryId  Int?
-  comments Comment[]
+  id               Int       @id @default(autoincrement())
+  title            String
+  description      String
+  createdDate      DateTime  @default(now())
+  updatedDate      DateTime  @updatedAt
+  category         Category? @relation(fields: [categoryId], references: [id])
+  categoryId       Int?
+  comments         Comment[]
+  Image            Image?
+  shortDescription String @default("")
+  shortDesc String @default("Click here to view details")
 }
 
 model Category {
@@ -33,12 +36,19 @@ model Category {
 }
 
 model Comment {
-  id Int @id @default(autoincrement())
-  comment String
-  name String
-  email String 
-  website String?
-  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  id       Int      @id @default(autoincrement())
+  comment  String
+  name     String
+  email    String
+  website  String?
+  post     Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   createAt DateTime @default(now())
-  postId Int
+  postId   Int
+}
+
+model Image {
+  id       Int    @id @default(autoincrement())
+  imageUrl String
+  post     Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId   Int    @unique
 }

@@ -1,12 +1,12 @@
 import { PagePreview } from "./post-template";
 import readingTime from "reading-time";
 import { fetchPostById } from "@/utils/dbutils";
+import Image from "next/image";
 
-export const Post = async ({postid}: any) => {
-
+export const Post = async ({ postid }: any) => {
   const postId = parseInt(postid);
   const post = await fetchPostById(postId);
-  if(!post) {
+  if (!post) {
     return null;
   }
   // TODO: make this call in preview section
@@ -21,9 +21,16 @@ export const Post = async ({postid}: any) => {
 
   return (
     <>
-      <div className="mx-auto max-w-5xl px-3 py-5">
+      <div className="mx-auto max-w-5xl px-3 py-5 pt-0">
+        <Image
+          className="max-w-full rounded-lg shadow-xl dark:shadow-gray-800 object-cover m-auto mb-4"
+          src={post.Image?.imageUrl ?? "/uploads/default.jpg"}
+          width="1500"
+          height="100"
+          alt="Main image"
+        ></Image>
         <section className="mb-5">
-          <div className="text-6xl mb-2 font-bold">{post.title}</div>
+          <div className="text-3xl md:text-5xl mb-2 md:font-bold font-semibold">{post.title}</div>
           <div className="flex flex-col md:flex-row md:gap-3 text-slate-500">
             <span>
               by <b>BUZZMAKER.COM</b>
@@ -33,8 +40,7 @@ export const Post = async ({postid}: any) => {
             {updated && <span>(Edited)</span>}
           </div>
         </section>
-
-       <PagePreview post={post}/>
+        <PagePreview post={post} />
       </div>
     </>
   );

@@ -8,6 +8,10 @@ import { useState } from "react";
 import { CreatePost } from "@/actions/post/create-post";
 import { useFormState, useFormStatus } from "react-dom";
 import { updatePost } from "@/actions/post/update-post";
+import { ShortDescriptionEdit } from "./short-description";
+import { generateHTML } from "@tiptap/react";
+import toast from "react-hot-toast";
+import { defaultExtensions } from "@/components/text-editor/extensions/novel-extension";
 
 interface PostProps {
   postData?: {
@@ -17,6 +21,8 @@ interface PostProps {
       name: string;
     };
     description: string;
+    shortDescription: string;
+    shortDesc: string;
   };
   categories: {
     id: number;
@@ -26,8 +32,8 @@ interface PostProps {
 }
 
 const Footer = () => {
-const {pending} = useFormStatus();
-console.log(pending);
+  const { pending } = useFormStatus();
+  console.log(pending);
   return <footer className="mt-5 flex gap-2 m-5"></footer>;
 };
 
@@ -38,7 +44,9 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
   const [description, setDescription] = useState(
     JSON.parse(initialDescription)
   );
-  const [loading, setLoading] = useState(false)
+  const [desc, setDesc] = useState(postData?.shortDesc)
+  const [file, setFile] = useState();
+  const [loading, setLoading] = useState(false);
   const selectedCategory = postData?.category?.id;
 
   const submitBlogData = async (e: any) => {
@@ -47,19 +55,25 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
     formData.append("title", title);
     formData.append("categoryId", String(category));
     formData.append("description", JSON.stringify(description));
-    console.log(formData.get("title"), formData.get("categoryId"), formData.get('description'))
-    setLoading(true)
-    if(postId) {
+    formData.append("file", file as any)
+    formData.append("shortDesc", String(desc))
+    console.log("insd")
+    try {
+      const convertedData = generateHTML(description, defaultExtensions)
+      formData.append("shortDescription", convertedData)
+    } catch(error) {
+      toast.error("There is some issue in description")
+    }
+
+    setLoading(true);
+    if (postId) {
       const updatePostById = updatePost.bind(null, postId);
       await updatePostById(formData);
-    }
-    else {
+    } else {
       await CreatePost(formData);
     }
-    setLoading(false)
-  }
-
-
+    setLoading(false);
+  };
 
   return (
     <>
@@ -79,10 +93,17 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
           }
           editorContent={description}
         />
+        <ShortDescriptionEdit defaultDescription={desc ?? ""} onShortDescriptionChange={(shortDescription: any) => setDesc(shortDescription)}/>
+        <label>Upload Image</label>
+        <input type="file" onChange={(e: any) => setFile(e.target.files[0])} />
         <footer className="flex gap-2 m-5">
-          <Button type="submit" onClick={submitBlogData} disabled={loading}>{loading ?' Submitting' : 'Submit'}</Button>
+          <Button type="submit" onClick={submitBlogData} disabled={loading}>
+            {loading ? " Submitting" : "Submit"}
+          </Button>
           <Link href="/admin/dashboard">
-            <Button type="button" disabled={loading}>Cancel</Button>
+            <Button type="button" disabled={loading}>
+              Cancel
+            </Button>
           </Link>
         </footer>
         <Footer></Footer>
