@@ -3,6 +3,10 @@ import type { Config } from "tailwindcss";
 const config = {
   darkMode: ["class"],
   content: [
+    "./node_modules/flowbite-react/lib/**/*.js",
+    "./pages/**/*.{ts,tsx}",
+    "./public/**/*.html",
+    "./node_modules/flowbite-react/lib/**/*.js",
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
@@ -54,6 +58,11 @@ const config = {
         },
         linktext: '#6c5b7b',
         linkhovertext: '#f67280',
+        'theme-color-1': '#6c5b7b',
+        'theme-color-2': '#f67280',
+        'theme-color-3': '#f8b195',
+        'theme-color-4': '#c06c84',
+        
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,7 +85,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("flowbite/plugin"),
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography")
+  ],
 } satisfies Config;
 
 export default config;
