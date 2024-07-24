@@ -24,15 +24,17 @@ model Post {
   categoryId       Int?
   comments         Comment[]
   Image            Image?
-  shortDescription String @default("")
-  shortDesc String @default("Click here to view details")
+  shortDescription String    @default("")
+  shortDesc        String    @default("Click here to view details")
+  slug             String    @unique
 }
 
 model Category {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @unique
   posts     Post[]
   createdAt DateTime @default(now())
+  slug      String   @unique
 }
 
 model Comment {

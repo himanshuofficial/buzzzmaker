@@ -10,6 +10,7 @@ export const PostSchema = z.object({
     categoryId: z.coerce.number().optional(),
     shortDescription: z.string(),
     shortDesc: z.string(),
+    slug: z.string(),
 })
 
 export const CommentSchema = z.object({
