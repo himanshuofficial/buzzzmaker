@@ -6,11 +6,22 @@ import { Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { categoryId: string };
+}) {
+  return {
+    title: params?.categoryId,
+  };
+}
+
 const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
-  const categoryId = parseInt(params?.categoryId);
-  let posts = await fetchPostsWithCategory(parseInt(params?.categoryId));
+  let posts = await fetchPostsWithCategory(params?.categoryId);
   const categories = await fetchCategories();
-  const activeCategoryName = categories?.filter((category) => category.id === categoryId)[0]?.name;
+  const activeCategoryName = categories?.filter(
+    (category) => category.slug === params?.categoryId
+  )[0]?.name;
 
   return (
     <>
@@ -20,13 +31,13 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
           Explore
         </Badge>
         {categories?.map((category) => (
-          <Link href={`/category/${category.id}`} key={category.id}>
+          <Link href={`/category/${category.slug}`} key={category.id}>
             <button>
               <Badge
                 key={category.id}
                 variant={"outline"}
                 className={cn("text-base", {
-                  "border-black": category.id === categoryId,
+                  "border-black": category.slug === params?.categoryId,
                 })}
               >
                 <Compass height={15} width={15} className="mr-1" />
@@ -36,7 +47,7 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
           </Link>
         ))}
       </div>
-      <PostGrid data={posts} activeTagName={activeCategoryName}/>
+      <PostGrid data={posts} activeTagName={activeCategoryName} />
     </>
   );
 };

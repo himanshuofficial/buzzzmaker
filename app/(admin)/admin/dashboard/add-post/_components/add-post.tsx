@@ -16,6 +16,7 @@ import { defaultExtensions } from "@/components/text-editor/extensions/novel-ext
 interface PostProps {
   postData?: {
     title: string;
+    slug: string;
     category: {
       id: number;
       name: string;
@@ -33,7 +34,6 @@ interface PostProps {
 
 const Footer = () => {
   const { pending } = useFormStatus();
-  console.log(pending);
   return <footer className="mt-5 flex gap-2 m-5"></footer>;
 };
 
@@ -44,7 +44,8 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
   const [description, setDescription] = useState(
     JSON.parse(initialDescription)
   );
-  const [desc, setDesc] = useState(postData?.shortDesc)
+  const [slug, setSlug] = useState(postData?.slug ?? "");
+  const [desc, setDesc] = useState(postData?.shortDesc);
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
   const selectedCategory = postData?.category?.id;
@@ -55,22 +56,33 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
     formData.append("title", title);
     formData.append("categoryId", String(category));
     formData.append("description", JSON.stringify(description));
-    formData.append("file", file as any)
-    formData.append("shortDesc", String(desc))
-    console.log("insd")
+    formData.append("file", file as any);
+    formData.append("shortDesc", String(desc));
+    formData.append("slug", slug);
+
     try {
-      const convertedData = generateHTML(description, defaultExtensions)
-      formData.append("shortDescription", convertedData)
-    } catch(error) {
-      toast.error("There is some issue in description")
+      const convertedData = generateHTML(description, defaultExtensions);
+      formData.append("shortDescription", convertedData);
+    } catch (error) {
+      toast.error("There is some issue in description");
     }
 
     setLoading(true);
     if (postId) {
       const updatePostById = updatePost.bind(null, postId);
-      await updatePostById(formData);
+      const post = await updatePostById(formData);
+      if (post?.error) {
+        toast.error(post.error);
+      } else {
+        toast.success("Post updated successfully");
+      }
     } else {
-      await CreatePost(formData);
+      const post = await CreatePost(formData);
+      if (post?.error) {
+        toast.error(post.error);
+      } else {
+        toast.success("post created successfully");
+      }
     }
     setLoading(false);
   };
@@ -80,7 +92,9 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
       <form>
         <TitleEdit
           onTitleChange={(title) => setTitle(title)}
+          onSlugChange={(slug) => setSlug(slug)}
           name={postData?.title}
+          initialSlug={postData?.slug}
         />
         <CategoryEdit
           onCategoryChange={(data) => setCategory(data)}
@@ -93,7 +107,12 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
           }
           editorContent={description}
         />
-        <ShortDescriptionEdit defaultDescription={desc ?? ""} onShortDescriptionChange={(shortDescription: any) => setDesc(shortDescription)}/>
+        <ShortDescriptionEdit
+          defaultDescription={desc ?? ""}
+          onShortDescriptionChange={(shortDescription: any) =>
+            setDesc(shortDescription)
+          }
+        />
         <label>Upload Image</label>
         <input type="file" onChange={(e: any) => setFile(e.target.files[0])} />
         <footer className="flex gap-2 m-5">

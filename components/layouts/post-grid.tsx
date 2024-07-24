@@ -19,7 +19,7 @@ export const PostGrid = ({ data, activeTagName }: any) => {
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-2">
             {data?.map((item: any) => (
               <Link
-                href={`/post/${item.id}`}
+                href={`/post/${item.slug}`}
                 className="p-1 rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl hover:scale-105 transition duration-500 cursor-pointer"
                 key={item.id}
               >
