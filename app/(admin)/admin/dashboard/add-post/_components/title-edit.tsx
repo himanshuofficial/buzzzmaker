@@ -47,13 +47,14 @@ export const TitleEdit = ({ name, initialSlug, onTitleChange, onSlugChange }: Ti
       </CardHeader>
       <CardContent className="py-8">
         <Label htmlFor="title">Title</Label>
-        <Input type="title" value={title} onChange={handleTitleChange}></Input>
+        <Input type="title" value={title} onChange={handleTitleChange} className="mb-4"></Input>
         <Label htmlFor="title">Slug Value</Label>
         <Input
           type="slugValue"
           required
           value={slug}
           onChange={handleSlugEdit}
+          className="mb-4"
         ></Input>
         <Button className="mt-2" type="button" onClick={generateSlugValue}>
           Generate slug

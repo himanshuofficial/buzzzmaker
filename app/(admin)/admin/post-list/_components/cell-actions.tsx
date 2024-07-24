@@ -12,17 +12,11 @@ export const CellAction = ({ data }: any) => {
 
   return (
     <form className="flex flex-col md:flex-row gap-1" action={deletePostById}>
-      <FormSubmit
-        variant="destructive"
-        className="h-7 gap-1 text-sm"
-        fallbackMessage="Deleting"
-        action="delete"
-      />
       <Link href={`dashboard/add-post/${postId}`}>
         <Button
           size="sm"
           variant="outline"
-          className="h-7 gap-1 text-sm border-solid border-2 border-slate-700"
+          className="h-7 gap-1 text-sm border-none"
           type="button"
           onClick={() => redirect(`/edit-post/${postId}`)}
         >
@@ -34,12 +28,18 @@ export const CellAction = ({ data }: any) => {
           title="view"
           size="sm"
           variant="outline"
-          className="h-7 gap-1 text-sm border-solid border-2 border-slate-700"
+          className="h-7 gap-1 text-sm border-none"
           type="button"
         >
           <View className="h-3.5 w-3.5" />
         </Button>
       </Link>
+      <FormSubmit
+        variant="destructive"
+        className="h-7 gap-1 text-sm"
+        fallbackMessage="Deleting"
+        action="delete"
+      />
     </form>
   );
 };

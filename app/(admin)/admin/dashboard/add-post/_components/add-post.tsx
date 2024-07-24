@@ -12,6 +12,15 @@ import { ShortDescriptionEdit } from "./short-description";
 import { generateHTML } from "@tiptap/react";
 import toast from "react-hot-toast";
 import { defaultExtensions } from "@/components/text-editor/extensions/novel-extension";
+import { redirect } from "next/navigation";
+import { Label } from "@/components/ui/label";
+import {
+  CardContent,
+  CardHeader,
+  Card,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 interface PostProps {
   postData?: {
@@ -75,6 +84,7 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
         toast.error(post.error);
       } else {
         toast.success("Post updated successfully");
+        redirect("/admin/dashboard");
       }
     } else {
       const post = await CreatePost(formData);
@@ -82,6 +92,7 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
         toast.error(post.error);
       } else {
         toast.success("post created successfully");
+        redirect("/admin/dashboard");
       }
     }
     setLoading(false);
@@ -113,8 +124,20 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
             setDesc(shortDescription)
           }
         />
-        <label>Upload Image</label>
-        <input type="file" onChange={(e: any) => setFile(e.target.files[0])} />
+        <Card className="m-5">
+          <CardHeader className="border-b-2">
+            <CardTitle>Upload File</CardTitle>
+            <CardDescription>Upload Cover image</CardDescription>
+          </CardHeader>
+          <CardContent className="py-8">
+            <input
+              type="file"
+              name="uploadfile"
+              onChange={(e: any) => setFile(e.target.files[0])}
+            />
+          </CardContent>
+        </Card>
+
         <footer className="flex gap-2 m-5">
           <Button type="submit" onClick={submitBlogData} disabled={loading}>
             {loading ? " Submitting" : "Submit"}

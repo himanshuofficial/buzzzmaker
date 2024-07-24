@@ -22,7 +22,7 @@ export const Post = async ({ postid }: any) => {
   return (
     <>
       <div className="mx-auto max-w-5xl px-3 py-5 pt-0">
-        <div className="h-[500px] oveflow-hidden">
+        <div className="h-[500px] oveflow-hidden mb-16">
           <Image
             className="max-w-full rounded-lg shadow-xl dark:shadow-gray-800 object-cover m-auto mb-4 w-full h-full"
             src={post.Image?.imageUrl ?? "/uploads/default.jpg"}

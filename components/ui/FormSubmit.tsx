@@ -29,7 +29,7 @@ export const FormSubmit = ({
   if (pending) {
     return (
       <Button
-        className={cn("border-solid border-2 border-slate-700", className)}
+        className={cn("border-none", className)}
         disabled={pending}
         variant={variant}
         size="sm"
@@ -44,7 +44,7 @@ export const FormSubmit = ({
       <Button
         type="submit"
         variant={variant}
-        className={cn("border-solid border-2 border-slate-700", className)}
+        className={cn("border-none", className)}
         size="sm"
       >
         {action === "delete" && <Trash className="h-3.5 w-3.5" />}

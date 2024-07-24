@@ -91,6 +91,4 @@ export const CreatePost = async (formData: FormData) => {
     }
     return null;
   }
-
-  redirect("/admin/dashboard")
 };
