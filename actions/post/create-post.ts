@@ -6,6 +6,7 @@ import path from "path";
 import { PostSchema } from "@/schemas/schema";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export type State = {
@@ -22,7 +23,8 @@ export const CreatePost = async (formData: FormData) => {
     description: formData.get("description"),
     categoryId: formData.get("categoryId") ?? undefined,
     shortDescription: formData.get("shortDescription"),
-    shortDesc: formData.get("shortDesc")
+    shortDesc: formData.get("shortDesc"),
+    slug: formData.get("slug"),
   });
   if (!validatedData.success) {
     console.log("Invalid Data as per schema");
@@ -32,9 +34,8 @@ export const CreatePost = async (formData: FormData) => {
       },
     };
   }
-  console.log(formData)
   const file: any= formData.get("file");
-  const { title, description, categoryId, shortDescription, shortDesc} = validatedData.data;
+  const { title, description, categoryId, shortDescription, shortDesc, slug} = validatedData.data;
   let post;
   try {
     if (categoryId) {
@@ -44,7 +45,8 @@ export const CreatePost = async (formData: FormData) => {
           description,
           categoryId,
           shortDescription,
-          shortDesc
+          shortDesc,
+          slug
         },
       });
     } else {
@@ -53,7 +55,8 @@ export const CreatePost = async (formData: FormData) => {
           title,
           description,
           shortDescription,
-          shortDesc
+          shortDesc,
+          slug
         },
       });
     }
@@ -81,7 +84,11 @@ export const CreatePost = async (formData: FormData) => {
       })
     }
   } catch (error) {
-    console.log("Error is: ", error);
+    if(error instanceof Prisma.PrismaClientKnownRequestError) {
+      if(error.code === 'P2002') {
+        return {error: "slug already exisits"}
+      }
+    }
     return null;
   }
 
