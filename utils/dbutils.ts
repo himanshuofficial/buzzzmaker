@@ -16,7 +16,6 @@ export const fetchCategories = async () => {
 };
 
 export const fetchPosts = async () => {
-
   // TODO: pagination is pending
   let posts;
   try {
@@ -45,7 +44,7 @@ export const fetchPostById = async (id: string) => {
   try {
     return await db.post.findUnique({
       where: {
-        slug: id
+        slug: id,
       },
       include: {
         category: {
@@ -53,23 +52,22 @@ export const fetchPostById = async (id: string) => {
             id: true,
             name: true,
             slug: true,
-          }
+          },
         },
-        Image: true
-      }
-    })
-  }
-  catch(error) {
+        Image: true,
+      },
+    });
+  } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
-}
+};
 
-export const fetchPostByIdAdmin = async(id: number) => {
+export const fetchPostByIdAdmin = async (id: number) => {
   try {
     return await db.post.findUnique({
       where: {
-        id
+        id,
       },
       include: {
         category: {
@@ -77,23 +75,22 @@ export const fetchPostByIdAdmin = async(id: number) => {
             id: true,
             name: true,
             slug: true,
-          }
+          },
         },
-        Image: true
-      }
-    })
-  }
-  catch(error) {
+        Image: true,
+      },
+    });
+  } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
-}
+};
 
 export const fetchPostsByCategoryId = async (categoryId: number) => {
   try {
     return await db.post.findMany({
       where: {
-        categoryId
+        categoryId,
       },
       select: {
         title: true,
@@ -102,15 +99,15 @@ export const fetchPostsByCategoryId = async (categoryId: number) => {
         category: {
           select: {
             name: true,
-          }
-        }
-      }
-    })
-  } catch(error) {
-    console.log(error)
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
     return null;
   }
-}
+};
 
 export const fetchCommentsByPostId = async (postId: number) => {
   try {
@@ -119,16 +116,16 @@ export const fetchCommentsByPostId = async (postId: number) => {
         postId,
       },
       orderBy: {
-        
-        createAt: "desc"
-      }
-    })
-  } catch(error) {
+        createAt: "desc",
+      },
+    });
+  } catch (error) {
     return null;
   }
-}
+};
 
 export const fetchPostsWithCategory = async (categoryId: string) => {
+  console.log(categoryId, "sdf");
   try {
     const category = await db.category.findUnique({
       where: {
@@ -136,33 +133,32 @@ export const fetchPostsWithCategory = async (categoryId: string) => {
       },
       select: {
         id: true,
-      }
-    })
-
-    return await db.post.findMany({
-      where: {
-        id: category?.id,
       },
-      include: {
-        category: {
-          select: {
-            name: true,
-
-          }
-        },  
-        _count: {
-          select: {
-            comments: true
-          }
+    });
+    if (category)
+      return await db.post.findMany({
+        where: {
+          id: category?.id,
         },
-        Image: true
-      }, 
-    })
-  } catch(error) {
-    console.log(error)
-    return null
+        include: {
+          category: {
+            select: {
+              name: true,
+            },
+          },
+          _count: {
+            select: {
+              comments: true,
+            },
+          },
+          Image: true,
+        },
+      });
+  } catch (error) {
+    console.log(error);
+    return null;
   }
-}
+};
 
 export const getLastFivePosts = async () => {
   try {
@@ -174,20 +170,20 @@ export const getLastFivePosts = async () => {
         Image: {
           select: {
             imageUrl: true,
-          }
-        }
+          },
+        },
       },
       take: 5,
       orderBy: {
-        updatedDate: "desc"
-      }
-    })
-    console.log(posts)
+        updatedDate: "desc",
+      },
+    });
+    console.log(posts);
     return posts;
-  } catch(error) {
+  } catch (error) {
     return null;
   }
-}
+};
 
 export const getLastFiveComments = async () => {
   try {
@@ -199,12 +195,12 @@ export const getLastFiveComments = async () => {
       },
       take: 5,
       orderBy: {
-        createAt: "desc"
-      }
-    })
-    console.log(comments)
+        createAt: "desc",
+      },
+    });
+    console.log(comments);
     return comments;
-  } catch(error) {
+  } catch (error) {
     return null;
   }
-}
+};

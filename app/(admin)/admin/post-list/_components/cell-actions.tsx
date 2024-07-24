@@ -29,7 +29,7 @@ export const CellAction = ({ data }: any) => {
           <Edit className="h-3.5 w-3.5" />
         </Button>
       </Link>
-      <Link href={`/post/${postId}`} target="__blank">
+      <Link href={`/post/${data.slug}`} target="__blank">
         <Button
           title="view"
           size="sm"
