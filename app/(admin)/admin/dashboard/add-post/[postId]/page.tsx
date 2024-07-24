@@ -1,10 +1,10 @@
-import { fetchCategories, fetchPostById } from "@/utils/dbutils";
+import { fetchCategories, fetchPostByIdAdmin } from "@/utils/dbutils";
 import { AddPost } from "../_components/add-post";
 
 const EditPost = async ({ params }: { params: { postId: string } }) => {
   const postId = parseInt(params?.postId);
   const response: any = await Promise.all([
-    fetchPostById(postId),
+    fetchPostByIdAdmin(postId),
     fetchCategories(),
   ]);
 

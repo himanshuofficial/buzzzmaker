@@ -6,7 +6,7 @@ export default function Header() {
 
     const recentBlogs = [
         {title: 'Hi Aryan calling'},
-        {title: "We've designed and built ecommerce experiences that have driven sales"},
+        {title: "We have designed and built ecommerce experiences that have driven sales"},
         {title: 'Hi Aryan calling'},
         {title: 'Hi Aryan calling'},
         {title: 'Hi Aryan calling'}
@@ -55,7 +55,7 @@ export default function Header() {
         <>
 
         <header id="site-header" className="top-0">
-        <div id="drawer-navigation" className="z-50 fixed top-0 left-0 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" tabIndex="-1" aria-labelledby="drawer-navigation-label">
+        <div id="drawer-navigation" className="z-50 fixed top-0 left-0 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" aria-labelledby="drawer-navigation-label">
             <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 <span className="sr-only">Close menu</span>
@@ -121,7 +121,7 @@ export default function Header() {
             </div>
 
             <div>
-                <h3 className="text-lg text-black font-bold mt-10 mb-3">Editor's Pick</h3>
+                <h3 className="text-lg text-black font-bold mt-10 mb-3">Editors Pick</h3>
                 <div className="flex flex-col gap-2">
                     { editorPicks.map((post, index) => {
                         return (

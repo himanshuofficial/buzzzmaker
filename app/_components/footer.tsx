@@ -112,13 +112,13 @@ export default function FooterComp() {
                                 <div className="blog-posts flex flex-col gap-y-6">
                                     {popularPosts.map((post, index) => (
                                         <div key={index} className="widget-entry has-post-thumbnail flex flex-row">
-                                        <div className="post-thumbnail rounded-lg pr-4 min-[30%] w-[30%]">
+                                        <div className="post-thumbnail rounded-lg pr-4 basic-28 shrink-0">
                                             <a href={post.url}>
                                             <img
                                                 width="150"
                                                 height="150"
                                                 src={post.imageUrl}
-                                                className="attachment-thumbnail size-thumbnail wp-post-image"
+                                                className="attachment-thumbnail size-thumbnail wp-post-image rounded-lg"
                                                 alt=""
                                                 decoding="async"
                                                 loading="lazy"
@@ -153,13 +153,13 @@ export default function FooterComp() {
                                 <div className="blog-posts flex flex-col gap-y-6">
                                     {lifestylePosts.map((post, index) => (
                                         <div key={index} className="widget-entry has-post-thumbnail flex flex-row">
-                                        <div className="post-thumbnail rounded-lg pr-4 min-[30%] w-[30%]">
+                                        <div className="post-thumbnail rounded-lg pr-4 basic-28 shrink-0">
                                             <a href={post.url}>
                                             <img
                                                 width="150"
                                                 height="150"
                                                 src={post.imageUrl}
-                                                className="attachment-thumbnail size-thumbnail wp-post-image"
+                                                className="attachment-thumbnail size-thumbnail wp-post-image rounded-lg"
                                                 alt=""
                                                 decoding="async"
                                                 loading="lazy"
@@ -194,13 +194,13 @@ export default function FooterComp() {
                                 <div className="blog-posts flex flex-col gap-y-6">
                                     {beautyPosts.map((post, index) => (
                                         <div key={index} className="widget-entry has-post-thumbnail flex flex-row">
-                                        <div className="post-thumbnail rounded-lg pr-4 min-[30%] w-[30%]">
+                                        <div className="post-thumbnail rounded-lg pr-4 basic-28 shrink-0">
                                             <a href={post.url}>
                                             <img
                                                 width="150"
                                                 height="150"
                                                 src={post.imageUrl}
-                                                className="attachment-thumbnail size-thumbnail wp-post-image"
+                                                className="attachment-thumbnail size-thumbnail wp-post-image rounded-lg"
                                                 alt=""
                                                 decoding="async"
                                                 loading="lazy"

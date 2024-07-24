@@ -4,8 +4,8 @@ import { fetchPostById } from "@/utils/dbutils";
 import Image from "next/image";
 
 export const Post = async ({ postid }: any) => {
-  const postId = parseInt(postid);
-  const post = await fetchPostById(postId);
+  const post = await fetchPostById(postid);
+  
   if (!post) {
     return null;
   }
@@ -22,15 +22,20 @@ export const Post = async ({ postid }: any) => {
   return (
     <>
       <div className="mx-auto max-w-5xl px-3 py-5 pt-0">
-        <Image
-          className="max-w-full rounded-lg shadow-xl dark:shadow-gray-800 object-cover m-auto mb-4"
-          src={post.Image?.imageUrl ?? "/uploads/default.jpg"}
-          width="1500"
-          height="100"
-          alt="Main image"
-        ></Image>
+        <div className="h-[500px] oveflow-hidden">
+          <Image
+            className="max-w-full rounded-lg shadow-xl dark:shadow-gray-800 object-cover m-auto mb-4 w-full h-full"
+            src={post.Image?.imageUrl ?? "/uploads/default.jpg"}
+            width="1500"
+            height="100"
+            alt="Main image"
+          ></Image>
+        </div>
+
         <section className="mb-5">
-          <div className="text-3xl md:text-5xl mb-2 md:font-bold font-semibold">{post.title}</div>
+          <div className="text-3xl md:text-5xl mb-2 md:font-bold font-semibold">
+            {post.title}
+          </div>
           <div className="flex flex-col md:flex-row md:gap-3 text-slate-500">
             <span>
               by <b>BUZZMAKER.COM</b>

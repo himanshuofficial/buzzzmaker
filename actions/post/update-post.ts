@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { writeFile } from "fs/promises";
 import { unlinkSync } from "fs";
 import path from "path";
+import { Prisma } from "@prisma/client";
 
 export type State = {
   errors?: {
@@ -21,9 +22,9 @@ export const updatePost = async (postId: number, formData: FormData) => {
     description: formData.get("description"),
     categoryId: formData.get("categoryId") ?? undefined,
     shortDescription: formData.get("shortDescription"),
-    shortDesc: formData.get("shortDesc")
+    shortDesc: formData.get("shortDesc"),
+    slug: formData.get("slug")
   });
-  console.log("short", formData.get("shortDescription"))
   if (!validatedData.success) {
     console.log("Invalid Data as per schema", validatedData.error.flatten().fieldErrors);
     return {
@@ -33,8 +34,7 @@ export const updatePost = async (postId: number, formData: FormData) => {
     };
   }
   const file: any = formData.get("file");
-  console.log(file)
-  const { title, description, categoryId, shortDescription, shortDesc} = validatedData.data;
+  const { title, description, categoryId, shortDescription, shortDesc, slug} = validatedData.data;
   let post;
   try {
     if (categoryId) {
@@ -47,7 +47,8 @@ export const updatePost = async (postId: number, formData: FormData) => {
           description,
           categoryId,
           shortDescription,
-          shortDesc
+          shortDesc,
+          slug
         },
       });
     } else {
@@ -59,11 +60,11 @@ export const updatePost = async (postId: number, formData: FormData) => {
           title,
           description,
           shortDescription,
-          shortDesc
+          shortDesc,
+          slug,
         },
       });
     }
-    console.log(post, "posting", file);
     if (file && file!="undefined") {
       const filename = Date.now() + file.name.replaceAll(" ", "_");
       await db.image.update({
@@ -86,6 +87,11 @@ export const updatePost = async (postId: number, formData: FormData) => {
     }
   } catch (error) {
     console.log("Error while updating post: ", error);
+    if(error instanceof Prisma.PrismaClientKnownRequestError) {
+      if(error.code === 'P2002') {
+        return {error: "slug already exisits"}
+      }
+    }
     return null;
   }
   redirect("/admin/dashboard");

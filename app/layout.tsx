@@ -20,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+
       </head>
       <body className={inter.className}>
         {children}
         <Toaster position="top-right"/>
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+        <script async src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
       </body>
     </html>
   );
