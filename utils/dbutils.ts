@@ -42,7 +42,7 @@ export const fetchPosts = async () => {
 
 export const fetchPostById = async (id: string) => {
   try {
-    return await db.post.findUnique({
+    return await  db.post.findUnique({
       where: {
         slug: id,
       },
