@@ -1,5 +1,5 @@
 import SideNavBar from "./_components/side-nav";
-import PostList from "../post-list/page";
+import PostList from "@/components/post-list/page";
 import { CategoryList } from "./_components/caetgory-list";
 
 export default function AdminDashboard({ searchParams }: any) {

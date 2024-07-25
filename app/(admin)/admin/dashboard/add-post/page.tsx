@@ -4,6 +4,7 @@ import { AddPost } from "./_components/add-post";
 const EditPost = async () => {
 
   const categoryList = await fetchCategories();
+  console.log(categoryList)
   
   return (
     <>

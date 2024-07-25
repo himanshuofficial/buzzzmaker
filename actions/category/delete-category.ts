@@ -11,4 +11,5 @@ export const deleteCategory = async (id: number) => {
         }
     })
     revalidatePath("/admin/category")
+    revalidatePath("/admin/dashboard/add-post")
   };

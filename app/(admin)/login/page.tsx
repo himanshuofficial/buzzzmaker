@@ -6,7 +6,7 @@ import Image from "next/image";
 const LoginPage = async () => {
   const session = await getSession();
   if (session) {
-    redirect("/admin/post");
+    redirect("/admin/dashboard");
   }
   const loginUser = async (formData: any) => {
     "use server";

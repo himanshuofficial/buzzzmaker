@@ -27,4 +27,5 @@ export const CreateCategory = async (formData: FormData) => {
     }
   }
   revalidatePath("/admin/category")
+  revalidatePath("/admin/dashboard/add-post")
 };

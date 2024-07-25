@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 
 export const fetchCategories = async () => {
   try {
+    console.log("fetching")
     return await db.category.findMany({
       select: {
         id: true,
