@@ -10,7 +10,6 @@ export const PostGrid = ({ data, activeTagName }: any) => {
         <div className="container px-6 text-gray-600 md:px-12 xl:px-6">
           <div className="text-gray-500 mb-5 font-semibold flex flex-col justify-center items-center gap-4">
             <p className=" text-black text-5xl">{activeTagName}</p>
-            <span>{data?.length} Posts</span>
           </div>
           <Separator className="mb-7" />
           <div className="text-black font-semibold mb-7 text-2xl">
