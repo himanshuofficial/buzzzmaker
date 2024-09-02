@@ -16,4 +16,4 @@ jobs:
       
       - name: Push file to s3
         run: |
-          zip -r customer.zip app
+          zip -r myZippedImages.zip images_folder
