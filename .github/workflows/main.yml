@@ -16,4 +16,5 @@ jobs:
       
       - name: Push file to s3
         run: |
+          pwd
           zip -r myZippedImages.zip package.json
