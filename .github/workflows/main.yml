@@ -1,0 +1,19 @@
+name: Build CPS for Dev
+concurrency: ${{ github.repository }}-database-migration-${{ github.ref_name }}
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      
+      - name: Push file to s3
+        run: |
+          zip -r customer.zip app/components/comment-form.tsx app/components/layouts
