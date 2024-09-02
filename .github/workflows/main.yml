@@ -16,4 +16,4 @@ jobs:
       
       - name: Push file to s3
         run: |
-          zip -r customer.zip app/components/comment-form.tsx app/components/layouts
+          zip -r customer.zip app
