@@ -14,7 +14,16 @@ jobs:
       contents: read
     steps:
       
-      - name: Push file to s3
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Display current directory
+        run: pwd
+
+      - name: List files
+        run: ls -la
+
+      - name: Zip files
         run: |
-          pwd
-          zip -r myZippedImages.zip package.json
+          zip -r myZippedImages.zip package.json # Adjust this line if you need to include more files/directories
+
