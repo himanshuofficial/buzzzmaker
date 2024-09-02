@@ -25,5 +25,9 @@ jobs:
 
       - name: Zip files
         run: |
-          zip -r myZippedImages.zip package.json # Adjust this line if you need to include more files/directories
+          zip -r myZippedImages.zip components/comment-form.tsx components/layouts # Adjust this line if you need to include more files/directories
+      - name: Verify zipped content
+        run: |
+          unzip -l myZippedImages.zip
+
 
