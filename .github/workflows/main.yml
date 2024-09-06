@@ -25,9 +25,12 @@ jobs:
 
       - name: Zip files
         run: |
-          zip -r myZippedImages.zip components/layouts components -x a.txt
+          mkdir temp
+          mv components/layouts/post.tsx temp
+          mv componenets/layouts temp
+          zip -r myzip.zip temp
       - name: Verify zipped content
         run: |
-          unzip -l myZippedImages.zip
+          unzip -l myzip.zip
 
 
