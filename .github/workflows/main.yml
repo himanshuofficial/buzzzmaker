@@ -28,7 +28,7 @@ jobs:
           mkdir temp
           mv components/layouts/post-grid.tsx temp
           mv components/post-list temp
-          zip -j myzip.zip temp/post-grid.tsx
+          zip -r -j myzip.zip temp/post-grid.tsx temp/components/post-list
       - name: Verify zipped content
         run: |
           unzip -l myzip.zip
