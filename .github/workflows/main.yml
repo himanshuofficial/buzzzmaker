@@ -26,8 +26,8 @@ jobs:
       - name: Zip files
         run: |
           mkdir temp
-          mv components/layouts/post.tsx temp
-          mv componenets/layouts temp
+          mv components/layouts/post-grid.tsx temp
+          mv componenets/post-list temp
           zip -r myzip.zip temp
       - name: Verify zipped content
         run: |
