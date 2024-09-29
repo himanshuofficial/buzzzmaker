@@ -259,7 +259,7 @@ export default async function Header() {
                     id="menu-item-4445"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <a href="https://buzzzmaker.com/category/finance/">
+                    <a href="/category/travel">
                       Travel
                     </a>
                   </li>
