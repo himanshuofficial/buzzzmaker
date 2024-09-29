@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { Trykker } from "next/font/google";
 
 export const fetchCategories = async () => {
   try {
@@ -205,3 +206,21 @@ export const getLastFiveComments = async () => {
     return null;
   }
 };
+
+
+export const getPostIdFromSlug = async (postId: string) => {
+  try {
+    const posts = await db.post.findUnique({
+      where: {
+        slug: postId
+      },
+      select: {
+        id: true
+      }
+    })
+    return posts?.id;
+  } catch(e) {
+    console.log(e);
+    return null;
+  }
+}

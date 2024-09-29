@@ -202,15 +202,15 @@ export default async function Header() {
                     id="menu-item-4443"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <Link href="/contact" role="button">
-                      Contact
+                    <Link href="category/fashion" role="button">
+                      Fashion
                     </Link>
                   </li>
                   <li
                     id="menu-item-4443"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <Link href="/finanace" role="button">
+                    <Link href="/category/finanace" role="button">
                       Finance
                     </Link>
                   </li>
@@ -218,16 +218,16 @@ export default async function Header() {
                     id="menu-item-4443"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <Link href="/ai-ar-vr" role="button">
-                      AI/AR/VR
+                    <Link href="/category/viral" role="button">
+                      Viral
                     </Link>
                   </li>
                   <li
                     id="menu-item-4443"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <Link href="/viral" role="button">
-                      Viral
+                    <Link href="/category/himanshu" role="button">
+                      Himanshu
                     </Link>
                   </li>
                 </ul>
@@ -253,7 +253,7 @@ export default async function Header() {
                     id="menu-item-4443"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <a href="https://buzzzmaker.com/contact/">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li
                     id="menu-item-4445"
@@ -267,7 +267,7 @@ export default async function Header() {
                     id="menu-item-4444"
                     className="menu-item px-5 py-3 font-bold text-linktext hover:text-linkhovertext"
                   >
-                    <a href="https://buzzzmaker.com/category/ai-ar-vr/">
+                    <a href="/category/lifestyle">
                       Life Style
                     </a>
                   </li>
