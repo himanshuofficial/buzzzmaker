@@ -84,7 +84,6 @@ export const AddPost = ({ postData, categories, postId }: PostProps) => {
         toast.error(post.error);
       } else {
         toast.success("Post updated successfully");
-        redirect("/admin/dashboard");
       }
     } else {
       const post = await CreatePost(formData);

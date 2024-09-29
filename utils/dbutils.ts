@@ -139,7 +139,7 @@ export const fetchPostsWithCategory = async (categoryId: string) => {
     if (category)
       return await db.post.findMany({
         where: {
-          id: category?.id,
+          categoryId: category?.id,
         },
         include: {
           category: {
